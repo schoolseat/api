@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/app/server.js --ignore './src/database/json/*'"
+    "start": "nodemon src/app/server.js"
   },
   "dependencies": {
     "chalk": "^4.1.1",

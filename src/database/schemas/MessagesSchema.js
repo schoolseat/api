@@ -3,10 +3,12 @@ const { Schema } = require('mongoose');
 const { 
   defaultString, 
   defaultDate,
-  defaultObject
+  defaultObject,
+  defaultId
 } = require('../../utils/schemaUtils');
 
 module.exports = new Schema({
+  _id: defaultId,
   author: defaultObject,
   to: defaultString,
   timestamp: defaultDate,

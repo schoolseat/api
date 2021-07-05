@@ -1,7 +1,8 @@
+
+
 module.exports = {
     defaultString: {
         type: String,
-        default: ' ',
     },
     defaultArray: {
         type: Array,
@@ -11,14 +12,10 @@ module.exports = {
         type: Object,
         default: {},
     },
-   defaultDate: {
+    defaultDate: {
         type: Date,
-        required: true,
     },
-   defaultId: {
+    defaultId: {
         type: String,
-        required: true,
-        unique: true,
-        default: ' ',
     },
 }

@@ -8,7 +8,7 @@ const {
 } = require('../../utils/schemaUtils');
 
 module.exports = new Schema({
-  id: defaultId,
+  _id: defaultId,
   password: defaultString,
   email: defaultString,
   name: defaultString,
