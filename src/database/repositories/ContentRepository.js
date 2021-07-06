@@ -1,4 +1,4 @@
-const MongoRepository = require('../MongoRepository.js');
+const MongoRepository = require('../MongoRepository');
 const model = require('../schemas/ContentSchema');
 
 module.exports = class UserRepository extends MongoRepository {

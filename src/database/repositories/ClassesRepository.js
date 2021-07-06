@@ -1,4 +1,4 @@
-const MongoRepository = require('../MongoRepository.js');
+const MongoRepository = require('../MongoRepository');
 const model = require('../schemas/ClassesSchema');
 
 module.exports = class UserRepository extends MongoRepository {
@@ -8,7 +8,7 @@ module.exports = class UserRepository extends MongoRepository {
 
   parse(entity) {
     return {
-        createdAt: Date.now(),
+      createdAt: Date.now(),
       ...(super.parse(entity) || {}),
     };
   }

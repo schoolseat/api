@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const { blue, magenta } = require('chalk');
 const { networkInterfaces } = require('os');
@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/api', lessonsRoute);
 
 app.listen(port, () => console.log(
-  blue('server online \n'),
-  magenta(`http://localhost:${port}/api\nhttp://${nets.wlp1s0[0].address}:${port}/api`),
+  blue('  server online \n'),
+  magenta(` http://localhost:${port}/api
+  http://${nets.wlp1s0[0].address}:${port}/api`),
 ));

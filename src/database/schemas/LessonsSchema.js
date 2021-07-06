@@ -1,11 +1,10 @@
 const { Schema } = require('mongoose');
 
-const { 
-  defaultString, 
+const {
+  defaultString,
   defaultDate,
-  defaultId
+  defaultId,
 } = require('../../utils/schemaUtils');
-
 
 module.exports = new Schema({
   _id: defaultId,

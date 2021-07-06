@@ -1,57 +1,58 @@
-const Repository = require('./Repository.js')
+/* eslint-disable class-methods-use-this */
+const transformProps = require('transform-props');
+const Repository = require('./Repository');
 
-const transformProps = require('transform-props')
-const castToString = arg => String(arg)
+const castToString = (arg) => String(arg);
 
 module.exports = class MongoRepository extends Repository {
-  constructor (mongoose, model) {
-    super()
+  constructor(mongoose, model) {
+    super();
 
-    if (!mongoose || !model) throw new Error('Mongoose model cannot be null.')
-    this.mongoose = mongoose
+    if (!mongoose || !model) throw new Error('Mongoose model cannot be null.');
+    this.mongoose = mongoose;
 
-    this.model = typeof model === 'string' ? mongoose.model(model) : model
+    this.model = typeof model === 'string' ? mongoose.model(model) : model;
   }
 
-  get size () {
-    return this.model.countDocuments()
+  get size() {
+    return this.model.countDocuments();
   }
 
-  parse (entity) {
+  parse(entity) {
     return entity
       ? transformProps(
         entity.toObject({ versionKey: false }),
         castToString,
-        '_id'
+        '_id',
       )
-      : null
+      : null;
   }
 
-  add (entity) {
-    return this.model.create(entity).then(this.parse)
+  add(entity) {
+    return this.model.create(entity).then(this.parse);
   }
 
-  get (id, projection) {
+  get(id, projection) {
     return this.model
       .findById(id, projection)
       .then(
-        e => (e && this.parse(e)) || this.add({ _id: id, ...this.getParse() })
-      )
+        (e) => (e && this.parse(e)) || this.add({ _id: id, ...this.getParse() }),
+      );
   }
 
-  remove (id) {
-    return this.model.findOneAndDelete({ _id: id }).then(this.parse)
+  remove(id) {
+    return this.model.findOneAndDelete({ _id: id }).then(this.parse);
   }
 
-  findOne (id, projection) {
-    return this.model.findById(id, projection).then(this.parse)
+  findOne(id, projection) {
+    return this.model.findById(id, projection).then(this.parse);
   }
 
-  findAll (projection, types) {
-    return this.model.find({}, projection, types).then(e => e.map(this.parse))
+  findAll(projection, types) {
+    return this.model.find({}, projection, types).then((e) => e.map(this.parse));
   }
 
-  update (id, entity, options = { upsert: true }) {
-    return this.model.updateOne({ _id: id }, entity, options)
+  update(id, entity, options = { upsert: true }) {
+    return this.model.updateOne({ _id: id }, entity, options);
   }
-}
+};

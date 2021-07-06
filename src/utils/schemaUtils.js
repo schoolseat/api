@@ -6,11 +6,9 @@ module.exports = {
     },
     defaultArray: {
         type: Array,
-        default: [],
     },
     defaultObject: {
         type: Object,
-        default: {},
     },
     defaultDate: {
         type: Date,

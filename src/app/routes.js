@@ -3,7 +3,7 @@ const marked = require('marked');
 const fs = require('fs');
 
 const router = express.Router();
-const DataController = require('./datacontroller')
+const DataController = require('./datacontroller');
 
 const DatabaseMethods = new DataController();
 

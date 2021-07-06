@@ -7,7 +7,7 @@ module.exports = class Repository {
   getParse() {
     return {};
   }
-  
+
   parse() {}
 
   add() {}
@@ -21,7 +21,6 @@ module.exports = class Repository {
   findAll() {}
 
   update() {}
-  
-  findByIdAndRemove() {}
 
+  findByIdAndRemove() {}
 };

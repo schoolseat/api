@@ -1,16 +1,16 @@
-const MongoDB = require('../database/MongoDB.js')
+const MongoDB = require('../database/MongoDB');
 
 module.exports = class DatabaseLoader {
-  constructor () {
+  constructor() {
     this.database = new MongoDB({
       useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+      useUnifiedTopology: true,
+    });
   }
 
-  async start () {
-    return await this.database
+  start() {
+    return this.database
       .connect()
-      .then(() => this.database)
+      .then(() => this.database);
   }
-}
+};

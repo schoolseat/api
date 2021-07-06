@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose');
 const {
-    ClassesRepository, 
-    UserRepository, 
-    LessonsRepository, 
-    MessagesRepository,
-    ContentRepository
+  ClassesRepository,
+  UserRepository,
+  LessonsRepository,
+  MessagesRepository,
+  ContentRepository,
 } = require('./repositories');
 
 module.exports = class MongoDB {
