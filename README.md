@@ -1,4 +1,4 @@
-# api_escolaplus
+# Api
 
 ### `yarn install` or `npm install`
 
