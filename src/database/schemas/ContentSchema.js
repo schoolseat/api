@@ -4,6 +4,7 @@ const {
   defaultString,
   defaultDate,
   defaultId,
+  defaultObject,
 } = require('../../utils/schemaUtils');
 
 module.exports = new Schema({
@@ -12,4 +13,5 @@ module.exports = new Schema({
   createdAt: defaultDate,
   content: defaultString,
   text: defaultString,
+  classe: defaultObject,
 });

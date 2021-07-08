@@ -8,7 +8,7 @@ const {
 
 module.exports = new Schema({
   _id: defaultId,
-  deadLine: defaultDate,
+  deadline: defaultDate,
   timestamp: defaultDate,
   title: defaultString,
   content: defaultString,
