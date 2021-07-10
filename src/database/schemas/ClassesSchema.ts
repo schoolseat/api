@@ -1,8 +1,8 @@
-const { Schema } = require('mongoose');
+import { Schema } from 'mongoose';
 
-const { timestampOpts } = require('../../utils/schemaUtils');
+import { timestampOpts, Classe } from '../../utils/schemaUtils';
 
-module.exports = new Schema({
+export default new Schema<Classe>({
   _id: String,
   class: String,
   discipline: String,

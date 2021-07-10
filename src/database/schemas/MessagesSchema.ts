@@ -1,8 +1,8 @@
-const { Schema } = require('mongoose');
+import { Schema } from 'mongoose';
 
-const { timestampOpts } = require('../../utils/schemaUtils');
+import { timestampOpts, Message } from '../../utils/schemaUtils';
 
-module.exports = new Schema({
+export default new Schema<Message>({
   _id: String,
   author: Object,
   to: String,

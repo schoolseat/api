@@ -1,21 +1,22 @@
-const express = require('express');
-const marked = require('marked');
-const fs = require('fs');
+import { Router } from 'express';
+import marked from 'marked';
+import { readFileSync } from 'fs';
 
-const router = express.Router();
+const router = Router();
 
-const {
-  UserController,
-  ClasseController,
-  ContentController,
-  LessonController,
-  MessageController,
-} = require('./controllers');
+import { 
+  UserController, 
+  ClasseController, 
+  ContentController, 
+  LessonController, 
+  MessageController 
+} from './controllers';
 
-router
+export default router
+
   .get('/', (req, res) => {
     const path = `${__dirname}/routes.md`;
-    const file = fs.readFileSync(path, 'utf8');
+    const file = readFileSync(path, 'utf8');
     res.send(marked(file.toString()));
   })
 
@@ -43,5 +44,3 @@ router
   .get('/messages/:id', MessageController.getMessagesById)
   .delete('/messages/:id', MessageController.removeMessages)
   .post('/messages', MessageController.createMessages);
-
-module.exports = router;

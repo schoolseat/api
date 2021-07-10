@@ -1,31 +1,38 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
-const Database = require('../database');
+import { bruteUsers } from '../database';
+import { Request, Response } from 'express';
 
-const db = new Database().start();
-
-module.exports = {
-  async getAllUsers(req, res) {
-    const users = (await db).users.findAll();
+  /**
+   * @returns get all users
+   */
+   export async function getAllUsers(req: Request, res: Response){
+    const users = await bruteUsers.findAll();
     return res.send(await users);
-  },
-
-  async getUserById(req, res) {
+  }
+  /**
+   * @returns Get a user by their id
+   */
+  export async function getUserById(req: Request, res: Response) {
     const { id } = req.params;
-    const users = (await db).users.findOne({ _id: id });
+    const users = await bruteUsers.findOne({ _id: id });
     return res.send(await users);
-  },
-
-  async createUser(req, res) {
-    const users = (await db).users.add(req.body);
+  }
+  /**
+   * @returns Create a user
+   */
+   export async function createUser(req: Request, res: Response) {
+    const users = await bruteUsers.add(req.body);
     return res.send(await users);
-  },
-
-  async removeUser(req, res) {
-    const { id } = req.params;
-    const users = (await db).users.findByIdAndRemove({ _id: id });
-    return res.send(await users);
-  },
+  }
+  /**
+   * @returns Remove a user by their _id
+   */
+   export async function removeUser(req: Request, res: Response) {
+    const { id }  = req.params;
+    const users = await bruteUsers.findByIdAndRemove(id);
+    return res.send(users);
+  }
 /*
   async updateUser(user, {
     classes, nickname, name, bio, email, password, profilePic, level, xp,
@@ -75,4 +82,3 @@ module.exports = {
     }
   },
   */
-};

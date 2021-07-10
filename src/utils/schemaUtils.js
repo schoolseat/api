@@ -1,5 +1,10 @@
-module.exports = {
-  timestampOpts: { // Make Mongoose use Unix time (1 Jan 1970)
-    timestamps: { currentTime: () => Math.floor(Date.now() / 1000) },
-  },
+"use strict";
+exports.__esModule = true;
+exports.timestampOpts = void 0;
+exports.timestampOpts = {
+    timestamps: {
+        currentTime: function () {
+            return Math.floor(Date.now() / 1000);
+        }
+    }
 };
