@@ -25,6 +25,6 @@ module.exports = {
   async removeLessons(req, res) {
     const { id } = req.params;
     const lesson = (await db).lessons.findByIdAndRemove({ _id: id });
-    res.send(await lesson);
+    res.send(lesson);
   },
 };

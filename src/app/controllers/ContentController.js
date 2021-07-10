@@ -21,6 +21,6 @@ module.exports = {
   async removeContent(req, res) {
     const { id } = req.params;
     const content = (await db).content.findByIdAndRemove({ _id: id });
-    res.send(await content);
+    res.send(content);
   },
 };

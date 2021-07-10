@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+
 module.exports = class Repository {
   constructor() {
     if (this.constructor === Repository) { throw new Error('Cannot instantiate abstract class'); }
@@ -22,5 +23,5 @@ module.exports = class Repository {
 
   update() {}
 
-  findByIdAndRemove() {}
+  findByIdAndRemove(id: string) {}
 };

@@ -1,30 +1,43 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
-const Database = require('../database');
+import Database from '../database';
+import { Request, Response } from 'express';;
 
 const db = new Database().start();
 
-module.exports = {
-  async getAllUsers(req, res) {
+type Ide = {
+  id: string;
+}
+export = {
+  /**
+   * @returns get all users
+   */
+  async getAllUsers(req: Request, res: Response){
     const users = (await db).users.findAll();
     return res.send(await users);
   },
-
+  /**
+   * @returns Get a user by their id
+   */
   async getUserById(req, res) {
-    const { id } = req.params;
+    const { id }:Ide = req.params;
     const users = (await db).users.findOne({ _id: id });
     return res.send(await users);
   },
-
+  /**
+   * @returns Create a user
+   */
   async createUser(req, res) {
     const users = (await db).users.add(req.body);
     return res.send(await users);
   },
-
+  /**
+   * @returns Remove a user by their _id
+   */
   async removeUser(req, res) {
-    const { id } = req.params;
-    const users = (await db).users.findByIdAndRemove({ _id: id });
-    return res.send(await users);
+    const { id }  = req.params;
+    const users = (await db).users.findByIdAndRemove(id);
+    return res.send(users);
   },
 /*
   async updateUser(user, {

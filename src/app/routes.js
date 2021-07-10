@@ -12,7 +12,8 @@ const {
   MessageController,
 } = require('./controllers');
 
-router
+module.exports = router
+
   .get('/', (req, res) => {
     const path = `${__dirname}/routes.md`;
     const file = fs.readFileSync(path, 'utf8');
@@ -43,5 +44,3 @@ router
   .get('/messages/:id', MessageController.getMessagesById)
   .delete('/messages/:id', MessageController.removeMessages)
   .post('/messages', MessageController.createMessages);
-
-module.exports = router;

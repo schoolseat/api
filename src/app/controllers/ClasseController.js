@@ -25,7 +25,7 @@ module.exports = {
   async removeClasses(req, res) {
     const { id } = req.params;
     const classes = (await db).classes.findByIdAndRemove({ _id: id });
-    res.send(await classes);
+    res.send(classes);
   },
 /*
   async updateClasse(classe, {

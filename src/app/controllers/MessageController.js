@@ -23,6 +23,6 @@ module.exports = {
   async removeMessages(req, res) {
     const { id } = req.params;
     const messages = (await db).messages.findByIdAndRemove({ _id: id });
-    return res.send(await messages);
+    return res.send(messages);
   },
 };
