@@ -5,7 +5,8 @@ const { blue, magenta } = require('chalk');
 const { networkInterfaces } = require('os');
 // const cors = require('cors');
 
-const nets = networkInterfaces();
+let network = networkInterfaces();
+  network.wlp1s0 ? network = network.wlp1s0[0].address : network = network[Object.keys(network)[1]][0].address
 const app = express();
 
 const port = process.env.PORT || 3333;
@@ -32,7 +33,7 @@ app.use(express.json());
 app.use('/api', lessonsRoute);
 
 app.listen(port, () => console.log(
-  blue('  server online \n'),
-  magenta(` http://localhost:${port}/api
-  http://${nets.wlp1s0[0].address}:${port}/api`),
+    blue('App is running: \n'),
+    magenta(` http://localhost:${port}/api
+    http://${network}:${port}/api`)
 ));

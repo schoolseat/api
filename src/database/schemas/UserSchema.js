@@ -1,24 +1,18 @@
 const { Schema } = require('mongoose');
 
-const {
-  defaultString,
-  defaultArray,
-  defaultDate,
-  defaultId,
-} = require('../../utils/schemaUtils');
+const { timestampOpts } = require('../../utils/schemaUtils');
 
 module.exports = new Schema({
-  _id: defaultId,
-  password: defaultString,
-  email: defaultString,
-  name: defaultString,
-  nickname: defaultString,
-  profilePic: defaultString,
-  bornDate: defaultString,
-  bio: defaultString,
-  stars: defaultString,
-  level: defaultString,
-  xp: defaultString,
-  classes: defaultArray,
-  createdAt: defaultDate,
-});
+  _id: String,
+  password: String,
+  email: String,
+  name: String,
+  nickname: String,
+  profilePic: String,
+  bornDate: String,
+  bio: String,
+  stars: String,
+  level: String,
+  xp: String,
+  classes: Array,
+}, timestampOpts);

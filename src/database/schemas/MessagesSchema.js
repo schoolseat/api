@@ -1,21 +1,15 @@
 const { Schema } = require('mongoose');
 
-const {
-  defaultString,
-  defaultDate,
-  defaultObject,
-  defaultId,
-} = require('../../utils/schemaUtils');
+const { timestampOpts } = require('../../utils/schemaUtils');
 
 module.exports = new Schema({
-  _id: defaultId,
-  author: defaultObject,
-  to: defaultString,
-  timestamp: defaultDate,
-  content: defaultString,
+  _id: String,
+  author: Object,
+  to: String,
+  content: String,
 /*
   attachments: Object
   reactions: Object,
   reference: String
  */
-});
+}, timestampOpts);

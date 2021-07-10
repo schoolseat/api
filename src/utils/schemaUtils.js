@@ -1,17 +1,5 @@
 module.exports = {
-  defaultString: {
-    type: String,
-  },
-  defaultArray: {
-    type: Array,
-  },
-  defaultObject: {
-    type: Object,
-  },
-  defaultDate: {
-    type: Date,
-  },
-  defaultId: {
-    type: String,
+  timestampOpts: { // Make Mongoose use Unix time (1 Jan 1970)
+    timestamps: { currentTime: () => Math.floor(Date.now() / 1000) },
   },
 };
