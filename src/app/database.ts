@@ -18,6 +18,7 @@ const Mongo = new MongoDB({
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 })
+
 async function LoadAll() {
 	await Mongo.connect();
 

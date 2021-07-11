@@ -8,7 +8,7 @@ import {
   ClassesSchema
 } from './schemas/index';
 
-class MongoDB {
+export default class MongoDB {
   options: Object;
   classes: Object;
   users: Object;
@@ -31,7 +31,4 @@ class MongoDB {
     this.messages = new MessagesSchema(MongoDB);
     this.content = new ContentSchema(MongoDB);
   }
-
 };
-
-export default MongoDB;
