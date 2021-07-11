@@ -21,7 +21,7 @@ class MongoDB {
   }
   async connect() {
     await mongoose
-      .connect('mongodb+srv://tobias-bot:OswU4H9NUPlbZzVw@asynccluster.sq9re.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', this.options)
+      .connect(process.env.MONGODB_URI, this.options)
       .then((MongoDB) => this.loadSchemas(MongoDB))
   }
   async loadSchemas(MongoDB) {
