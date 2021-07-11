@@ -1,44 +1,38 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
-import Database from '../database';
-import { Request, Response } from 'express';;
+import { bruteUsers } from '../database';
+import { Request, Response } from 'express';
 
-const db = new Database().start();
-
-type Ide = {
-  id: string;
-}
-export = {
   /**
    * @returns get all users
    */
-  async getAllUsers(req: Request, res: Response){
-    const users = (await db).users.findAll();
+   export async function getAllUsers(req: Request, res: Response){
+    const users = await bruteUsers.findAll();
     return res.send(await users);
-  },
+  }
   /**
    * @returns Get a user by their id
    */
-  async getUserById(req, res) {
-    const { id }:Ide = req.params;
-    const users = (await db).users.findOne({ _id: id });
+  export async function getUserById(req: Request, res: Response) {
+    const { id } = req.params;
+    const users = await bruteUsers.findOne({ _id: id });
     return res.send(await users);
-  },
+  }
   /**
    * @returns Create a user
    */
-  async createUser(req, res) {
-    const users = (await db).users.add(req.body);
+   export async function createUser(req: Request, res: Response) {
+    const users = await bruteUsers.add(req.body);
     return res.send(await users);
-  },
+  }
   /**
    * @returns Remove a user by their _id
    */
-  async removeUser(req, res) {
+   export async function removeUser(req: Request, res: Response) {
     const { id }  = req.params;
-    const users = (await db).users.findByIdAndRemove(id);
+    const users = await bruteUsers.findByIdAndRemove(id);
     return res.send(users);
-  },
+  }
 /*
   async updateUser(user, {
     classes, nickname, name, bio, email, password, profilePic, level, xp,
@@ -88,4 +82,3 @@ export = {
     }
   },
   */
-};

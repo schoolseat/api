@@ -1,16 +1,19 @@
 /* eslint-disable no-console */
-require('dotenv').config();
-const express = require('express');
-const { blue, magenta } = require('chalk');
-const { networkInterfaces } = require('os');
+import 'dotenv/config'
+
+import express from 'express';
+import { blue, magenta } from 'chalk';
+import { networkInterfaces } from 'os';
 // const cors = require('cors');
 
-const nets = networkInterfaces();
+let network = networkInterfaces();
+let ip = network.wlp1s0 ? network.wlp1s0[0].address : network[Object.keys(network)[1]][0].address
+
 const app = express();
 
 const port = process.env.PORT || 3333;
 
-const lessonsRoute = require('./src/app/routes');
+import lessonsRoute from './app/routes';
 
 /*
 const whitelist = [];
@@ -32,7 +35,7 @@ app.use(express.json());
 app.use('/api', lessonsRoute);
 
 app.listen(port, () => console.log(
-  blue('  server online \n'),
-  magenta(` http://localhost:${port}/api
-  http://${nets.wlp1s0[0].address}:${port}/api`),
+    blue('App is running:\n'),
+    magenta(`http://localhost:${port}/api
+    http://${ip}:${port}/api`)
 ));
