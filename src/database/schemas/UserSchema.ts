@@ -1,8 +1,9 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
+import MongoRepository from '../MongoRepository';
 import { timestampOpts, User } from '../../utils/schemaUtils';
 
-export default new Schema<User>({
+const UserSchema = new Schema<User>({
   _id: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
@@ -16,3 +17,9 @@ export default new Schema<User>({
   xp: { type: String, required: true },
   classes: { type: Array, required: false },
 }, timestampOpts);
+
+export default class Users extends MongoRepository {
+  constructor(mongoose) {
+    super(mongoose, model<User>('user', UserSchema));
+  }
+}

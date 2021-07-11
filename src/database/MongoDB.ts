@@ -1,50 +1,37 @@
 /* eslint-disable no-undef */
 import mongoose from 'mongoose';
-
-import {
-  User,
-  Lesson,
-  Classe,
-  Content,
-  Message
-} from '../utils/schemaUtils';
-
 import {
   MessagesSchema,
   UserSchema,
   LessonsSchema,
   ContentSchema,
   ClassesSchema
-} from './schemas';
+} from './schemas/index';
 
-interface Methods {
-  findAll(): Object;
-  findOne(String): Object;
-  add(Object): Object;
-  findByIdAndRemove(String): Object;
-}
-interface Data {
-  users: Methods;
-  content: Methods;
-  classes: Methods;
-  messages: Methods;
-  lessons: Methods;
-  connect: Function;
-}
+class MongoDB {
+  options: Object;
+  classes: Object;
+  users: Object;
+  lessons: Object;
+  messages: Object;
+  content: Object;
 
-export default function MongoDB(options: Object):Data {
-
-  async function connect() {
-    return mongoose
-      .connect(process.env.MONGODB_URI, options)
-      .then(() => loadSchemas());
+  constructor(options:Object = {}) {
+    this.options = options;
+  }
+  async connect() {
+    await mongoose
+      .connect('mongodb+srv://tobias-bot:OswU4H9NUPlbZzVw@asynccluster.sq9re.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', this.options)
+      .then((MongoDB) => this.loadSchemas(MongoDB))
+  }
+  async loadSchemas(MongoDB) {
+    this.classes = new ClassesSchema(MongoDB);
+    this.users = new UserSchema(MongoDB);
+    this.lessons = new LessonsSchema(MongoDB);
+    this.messages = new MessagesSchema(MongoDB);
+    this.content = new ContentSchema(MongoDB);
   }
 
-  async function loadSchemas() {
-    mongoose.model<User>('user', UserSchema);
-    mongoose.model<Lesson>('lessons', LessonsSchema);
-    mongoose.model<Classe>('classes', ClassesSchema);
-    mongoose.model<Content>('content', ContentSchema);
-    mongoose.model<Message>('messages', MessagesSchema);
-  }
 };
+
+export default MongoDB;

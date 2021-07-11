@@ -4,9 +4,9 @@ import LessonsSchema from './LessonsSchema';
 import ContentSchema from './ContentSchema';
 import ClassesSchema from './ClassesSchema';
 
-export { 
+export {
     MessagesSchema,
-    UserSchema, 
+    UserSchema,
     LessonsSchema,
     ContentSchema,
     ClassesSchema

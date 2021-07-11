@@ -1,11 +1,17 @@
-import { Schema } from 'mongoose';
-
+import { Schema , model} from 'mongoose';
+import MongoRepository from '../MongoRepository';
 import { timestampOpts, Content } from '../../utils/schemaUtils';
 
-export default new Schema<Content>({
-  _id: String,
-  title: String,
-  content: String,
-  text: String,
-  classe: Object,
+const ContentSchema = new Schema<Content>({
+  _id: { type: String, required: true },
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+  text: { type: String, required: true },
+  classe: { type: String, required: true },
 }, timestampOpts);
+
+export default class Contents extends MongoRepository {
+  constructor(mongoose) {
+    super(mongoose, model<Content>('content', ContentSchema));
+  }
+}

@@ -5,11 +5,26 @@ import { readFileSync } from 'fs';
 const router = Router();
 
 import { 
-  UserController, 
-  ClasseController, 
-  ContentController, 
-  LessonController, 
-  MessageController 
+  getAllClasses,
+  getClassesById,
+  removeClasses,
+  createClasses,
+  getAllContent,
+  getContentById,
+  removeContent,
+  createContent,
+  getAllLessons,
+  getLessonsById,
+  removeLessons,
+  createLessons,
+  getAllMessages,
+  getMessagesById,
+  removeMessages,
+  createMessages,
+  getAllUsers,
+  getUserById,
+  removeUser,
+  createUser,
 } from './controllers';
 
 export default router
@@ -20,27 +35,27 @@ export default router
     res.send(marked(file.toString()));
   })
 
-  .get('/users', UserController.getAllUsers)
-  .get('/users/:id', UserController.getUserById)
-  .delete('/users/:id', UserController.removeUser)
-  .post('/users', UserController.createUser)
+  .get('/users', getAllUsers)
+  .get('/users/:id', getUserById)
+  .delete('/users/:id', removeUser)
+  .post('/users', createUser)
 
-  .get('/classes', ClasseController.getAllClasses)
-  .get('/classes/:id', ClasseController.getClassesById)
-  .delete('/classes/:id', ClasseController.removeClasses)
-  .post('/classes', ClasseController.createClasses)
+  .get('/classes', getAllClasses)
+  .get('/classes/:id', getClassesById)
+  .delete('/classes/:id', removeClasses)
+  .post('/classes', createClasses)
 
-  .get('/content', ContentController.getAllContent)
-  .get('/content/:id', ContentController.getContentById)
-  .delete('/content/:id', ContentController.removeContent)
-  .post('/content', ContentController.createContent)
+  .get('/content', getAllContent)
+  .get('/content/:id', getContentById)
+  .delete('/content/:id', removeContent)
+  .post('/content', createContent)
 
-  .get('/lessons', LessonController.getAllLessons)
-  .get('/lessons/:id', LessonController.getLessonsById)
-  .delete('/lessons/:id', LessonController.removeLessons)
-  .post('/lessons', LessonController.createLessons)
+  .get('/lessons', getAllLessons)
+  .get('/lessons/:id', getLessonsById)
+  .delete('/lessons/:id', removeLessons)
+  .post('/lessons', createLessons)
 
-  .get('/messages', MessageController.getAllMessages)
-  .get('/messages/:id', MessageController.getMessagesById)
-  .delete('/messages/:id', MessageController.removeMessages)
-  .post('/messages', MessageController.createMessages);
+  .get('/messages', getAllMessages)
+  .get('/messages/:id', getMessagesById)
+  .delete('/messages/:id', removeMessages)
+  .post('/messages', createMessages);

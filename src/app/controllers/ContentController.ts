@@ -3,7 +3,7 @@
 import { bruteContent } from '../database';
 import { Request, Response } from 'express';
 
-export async function getAllContent(req: Request, res: Response) {
+  export async function getAllContent(req: Request, res: Response) {
     const content = bruteContent.findAll();
     res.send(await content);
   }
