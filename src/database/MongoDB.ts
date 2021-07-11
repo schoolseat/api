@@ -16,7 +16,7 @@ class MongoDB {
   messages: Object;
   content: Object;
 
-  constructor(options:Object = {}) {
+  constructor(options: Object = {}) {
     this.options = options;
   }
   async connect() {
