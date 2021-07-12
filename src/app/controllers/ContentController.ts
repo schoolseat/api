@@ -25,7 +25,6 @@ import { Request, Response } from 'express';
   export async function removeContent(req: Request, res: Response) {
     const { bruteContent } = await Database()
     
-    const { id } = req.params;
-    const content = bruteContent.findByIdAndRemove({ _id: id });
+    const content = bruteContent.remove(req.params.id);
     res.send(content);
   }

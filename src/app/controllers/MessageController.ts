@@ -27,8 +27,7 @@ import { Request, Response } from 'express';
   export async function removeMessages(req: Request, res: Response) {
     const { bruteMessages } = await Database()
     
-    const { id } = req.params;
-    const messages = bruteMessages.findByIdAndRemove({ _id: id });
+    const messages = bruteMessages.remove(req.params.id);
     return res.send(messages);
   }
 

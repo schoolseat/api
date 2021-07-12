@@ -37,8 +37,7 @@ import { Request, Response } from 'express';
    export async function removeUser(req: Request, res: Response) {
     const { bruteUsers } = await Database()
 
-    const { id }  = req.params;
-    const users = await bruteUsers.findByIdAndRemove(id);
+    const users = await bruteUsers.remove(req.params.id);
     return res.send(users);
   }
 /*

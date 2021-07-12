@@ -31,8 +31,7 @@ export async function getAllClasses(req: Request, res: Response) {
   export async function removeClasses(req: Request, res: Response) {
     const { bruteClasses } = await Database()
 
-    const { id } = req.params;
-    const classes = bruteClasses.findByIdAndRemove({ _id: id });
+    const classes = bruteClasses.remove(req.params.id);
     res.send(classes);
   }
 /*

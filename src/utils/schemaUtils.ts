@@ -48,9 +48,5 @@ export interface Message {
 
 export const
   timestampOpts = { // Make Mongoose use Unix time (1 Jan 1970)
-    timestamps: {
-      currentTime: () => {
-        return Math.floor(Date.now() / 1000);
-      }
-    }
+    timestamps: true
   };

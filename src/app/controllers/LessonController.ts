@@ -2,7 +2,6 @@
 import Database from '../database';
 import { Request, Response } from 'express';
 
-
   export async function getAllLessons(req: Request, res: Response) {
     const { bruteLessons } = await Database()
 
@@ -28,7 +27,6 @@ import { Request, Response } from 'express';
   export async function removeLessons(req: Request, res: Response) {
     const { bruteLessons } = await Database()
     
-    const { id } = req.params;
-    const lesson = bruteLessons.findByIdAndRemove({ _id: id });
+    const lesson = bruteLessons.remove(req.params.id);
     res.send(lesson);
   }
