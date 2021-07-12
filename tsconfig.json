@@ -2,7 +2,7 @@
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "target": "ES2015",
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -25,9 +25,10 @@
     "lib": ["ES6", "ES2016", "ES2020"],
     "typeRoots": ["src/@types", "node_modules/@types"],
     "paths": {
-      "@app/*": ["./src/app/*"],
-      "@database/*": ["./src/database/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@/*": ["*"],
+      "@app/*": ["app/*"],
+      "@database/*": ["database/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }
