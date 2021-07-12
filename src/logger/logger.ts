@@ -6,6 +6,6 @@ export type Logger = {
 
 export const logger: Logger = {
   info(...messages: string[]): void {
-    console.log(...messages)
+    console.log(messages.join('\n'))
   },
 }
