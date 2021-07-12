@@ -1,32 +1,34 @@
-/* eslint-disable class-methods-use-this */
-import Database from '../database';
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
 
-  export async function getAllLessons(req: Request, res: Response) {
-    const { bruteLessons } = await Database()
+import { Lessons } from '@app/database/models'
 
-    const lesson = bruteLessons.findAll();
-    res.send(await lesson);
-  }
+export async function getAllLessons(
+  _req: Request,
+  res: Response,
+): Promise<void> {
+  const lessons = await Lessons.findAll()
 
-  export async function getLessonsById(req: Request, res: Response) {
-    const { bruteLessons } = await Database()
+  res.send(lessons)
+}
 
-    const { id } = req.params;
-    const lesson = bruteLessons.findOne({ _id: id });
-    res.send(await lesson);
-  }
+export async function getLessonById(
+  req: Request,
+  res: Response,
+): Promise<void> {
+  const { id } = req.params
+  const lesson = await Lessons.findOne({ _id: id })
 
-  export async function createLessons(req: Request, res: Response) {
-    const { bruteLessons } = await Database()
+  res.send(lesson)
+}
 
-    const lesson = bruteLessons.add(req.body);
-    res.send(await lesson);
-  }
+export async function createLesson(req: Request, res: Response): Promise<void> {
+  const lesson = await Lessons.add(req.body)
 
-  export async function removeLessons(req: Request, res: Response) {
-    const { bruteLessons } = await Database()
-    
-    const lesson = bruteLessons.remove(req.params.id);
-    res.send(lesson);
-  }
+  res.send(lesson)
+}
+
+export async function removeLesson(req: Request, res: Response): Promise<void> {
+  const lesson = await Lessons.remove(req.params.id)
+
+  res.send(lesson)
+}

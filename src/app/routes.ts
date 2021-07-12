@@ -1,28 +1,34 @@
-import { Router } from 'express';
-import marked from 'marked';
-import { readFileSync } from 'fs';
+import { readFileSync } from 'fs'
 
-const router = Router();
+import { Router } from 'express'
+import marked from 'marked'
 
-import { ClasseController, ContentController, LessonController, MessageController, UserControler } from './controllers';
+import {
+  ClasseController,
+  ContentController,
+  LessonController,
+  MessageController,
+  UserControler,
+} from './controllers'
 
-export default router
+const path = `${__dirname}/routes.md`
+const file = readFileSync(path, 'utf8')
 
-  .get('/', (req, res) => {
-    const path = `${__dirname}/routes.md`;
-    const file = readFileSync(path, 'utf8');
-    res.send(marked(file.toString()));
+export const routes = Router()
+
+routes
+  .get('/', (_req, res) => {
+    res.send(marked(file.toString()))
   })
-
   .get('/users', UserControler.getAllUsers)
   .get('/users/:id', UserControler.getUserById)
   .delete('/users/:id', UserControler.removeUser)
   .post('/users', UserControler.createUser)
 
   .get('/classes', ClasseController.getAllClasses)
-  .get('/classes/:id', ClasseController.getClassesById)
-  .delete('/classes/:id', ClasseController.removeClasses)
-  .post('/classes', ClasseController.createClasses)
+  .get('/classes/:id', ClasseController.getClasseById)
+  .delete('/classes/:id', ClasseController.removeClasse)
+  .post('/classes', ClasseController.createClasse)
 
   .get('/content', ContentController.getAllContent)
   .get('/content/:id', ContentController.getContentById)
@@ -30,11 +36,11 @@ export default router
   .post('/content', ContentController.createContent)
 
   .get('/lessons', LessonController.getAllLessons)
-  .get('/lessons/:id', LessonController.getLessonsById)
-  .delete('/lessons/:id', LessonController.removeLessons)
-  .post('/lessons', LessonController.createLessons)
+  .get('/lessons/:id', LessonController.getLessonById)
+  .delete('/lessons/:id', LessonController.removeLesson)
+  .post('/lessons', LessonController.createLesson)
 
   .get('/messages', MessageController.getAllMessages)
-  .get('/messages/:id', MessageController.getMessagesById)
-  .delete('/messages/:id', MessageController.removeMessages)
-  .post('/messages', MessageController.createMessages);
+  .get('/messages/:id', MessageController.getMessageById)
+  .delete('/messages/:id', MessageController.removeMessage)
+  .post('/messages', MessageController.createMessage)
