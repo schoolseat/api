@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts"
+    "start": "ts-node-dev --respawn --no-notify --transpile-only src/index.ts"
   },
   "dependencies": {
     "chalk": "^4.1.1",
