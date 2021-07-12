@@ -1,26 +1,36 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
-import { bruteClasses } from '../database';
+import Database from '../database';
 import { Request, Response } from 'express';
 
 export async function getAllClasses(req: Request, res: Response) {
+    const { bruteClasses } = await Database()
+
     const classes = bruteClasses.findAll();
     res.send(await classes);
   }
 
   export async function getClassesById(req: Request, res: Response) {
+    const { bruteClasses } = await Database()
+
     const { id } = req.params;
     const classes = bruteClasses.findOne({ _id: id });
     res.send(await classes);
   }
 
   export async function createClasses(req: Request, res: Response) {
+    const { bruteClasses } = await Database()
+
     const classes = bruteClasses.add(req.body);
     res.send(await classes);
   }
 
-  // parece q n tá funcionano
+  /**
+   * @Todo: Remove bugs 
+   */
   export async function removeClasses(req: Request, res: Response) {
+    const { bruteClasses } = await Database()
+
     const { id } = req.params;
     const classes = bruteClasses.findByIdAndRemove({ _id: id });
     res.send(classes);

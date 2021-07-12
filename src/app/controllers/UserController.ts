@@ -1,12 +1,14 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
-import { bruteUsers } from '../database';
+import Database from '../database';
 import { Request, Response } from 'express';
 
   /**
    * @returns get all users
    */
    export async function getAllUsers(req: Request, res: Response){
+    const { bruteUsers } = await Database()
+
     const users = await bruteUsers.findAll();
     return res.send(await users);
   }
@@ -14,6 +16,8 @@ import { Request, Response } from 'express';
    * @returns Get a user by their id
    */
   export async function getUserById(req: Request, res: Response) {
+    const { bruteUsers } = await Database()
+
     const { id } = req.params;
     const users = await bruteUsers.findOne({ _id: id });
     return res.send(await users);
@@ -22,6 +26,8 @@ import { Request, Response } from 'express';
    * @returns Create a user
    */
    export async function createUser(req: Request, res: Response) {
+    const { bruteUsers } = await Database()
+
     const users = await bruteUsers.add(req.body);
     return res.send(await users);
   }
@@ -29,6 +35,8 @@ import { Request, Response } from 'express';
    * @returns Remove a user by their _id
    */
    export async function removeUser(req: Request, res: Response) {
+    const { bruteUsers } = await Database()
+
     const { id }  = req.params;
     const users = await bruteUsers.findByIdAndRemove(id);
     return res.send(users);
