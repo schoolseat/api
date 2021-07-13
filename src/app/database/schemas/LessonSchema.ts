@@ -2,6 +2,7 @@ import { Schema, Document } from '@/app/database/Schema'
 import type { Lesson } from '@/types/models'
 
 export const LessonSchema = new Schema<Lesson & Document>({
+  _id: String,
   deadline: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
