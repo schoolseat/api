@@ -1,7 +1,6 @@
-import { readFileSync } from 'fs'
+import path from 'path'
 
 import { Router } from 'express'
-import marked from 'marked'
 
 import {
   ClasseController,
@@ -11,14 +10,11 @@ import {
   UserControler,
 } from './controllers'
 
-const path = `${__dirname}/routes.md`
-const file = readFileSync(path, 'utf8')
-
 export const routes = Router()
 
 routes
   .get('/', (_req, res) => {
-    res.send(marked(file.toString()))
+    res.sendFile(path.join(__dirname, '/routes.html'))
   })
   .get('/users', UserControler.getAllUsers)
   .get('/users/:id', UserControler.getUserById)
