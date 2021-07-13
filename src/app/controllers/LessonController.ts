@@ -2,21 +2,14 @@ import { Request, Response } from 'express'
 
 import { Lessons } from '@app/database/models'
 
-export async function getAllLessons(
-  _req: Request,
-  res: Response,
-): Promise<void> {
+export async function getAllLessons(_req: Request,res: Response): Promise<void> {
   const lessons = await Lessons.findAll()
 
   res.send(lessons)
 }
 
-export async function getLessonById(
-  req: Request,
-  res: Response,
-): Promise<void> {
-  const { id } = req.params
-  const lesson = await Lessons.findOne({ _id: id })
+export async function getLessonById(req: Request, res: Response): Promise<void> {
+  const lesson = await Lessons.findOne({ _id: req.params.id })
 
   res.send(lesson)
 }

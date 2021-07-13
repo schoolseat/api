@@ -15,8 +15,7 @@ export async function getAllUsers(_req: Request, res: Response): Promise<void> {
  * @returns Get a user by their id
  */
 export async function getUserById(req: Request, res: Response): Promise<void> {
-  const { id } = req.params
-  const user = await Users.findOne({ _id: id })
+  const user = await Users.findOne({ _id: req.params.id })
 
   res.send(user)
 }
