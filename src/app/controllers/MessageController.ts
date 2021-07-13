@@ -1,33 +1,40 @@
-/* eslint-disable class-methods-use-this */
-import Database from '../database';
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
 
-  export async function getAllMessages(req: Request, res: Response) {
-    const { bruteMessages } = await Database()
+import { Messages } from '@app/database/models'
 
-    const messages = bruteMessages.findAll();
-    return res.send(await messages);
-  }
+export async function getAllMessages(
+  _req: Request,
+  res: Response,
+): Promise<void> {
+  const messages = await Messages.findAll()
 
-  export async function getMessagesById(req: Request, res: Response) {
-    const { bruteMessages } = await Database()
-    
-    const { id } = req.params;
-    const messages = bruteMessages.findOne({ _id: id });
-    return res.send(await messages);
-  }
+  res.send(messages)
+}
 
-  export async function createMessages(req: Request, res: Response) {
-    const { bruteMessages } = await Database()
-    
-    const messages = bruteMessages.add(req.body);
-    return res.send(await messages);
-  }
+export async function getMessageById(
+  req: Request,
+  res: Response,
+): Promise<void> {
+  const { id } = req.params
+  const message = await Messages.findOne({ _id: id })
 
-  export async function removeMessages(req: Request, res: Response) {
-    const { bruteMessages } = await Database()
-    
-    const messages = bruteMessages.remove(req.params.id);
-    return res.send(messages);
-  }
+  res.send(message)
+}
 
+export async function createMessage(
+  req: Request,
+  res: Response,
+): Promise<void> {
+  const message = await Messages.add(req.body)
+
+  res.send(message)
+}
+
+export async function removeMessage(
+  req: Request,
+  res: Response,
+): Promise<void> {
+  const message = await Messages.remove(req.params.id)
+
+  res.send(message)
+}

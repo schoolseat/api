@@ -1,39 +1,36 @@
-/* eslint-disable no-console */
 import 'dotenv/config'
 
-import Express, { Request, Response, NextFunction } from 'express';
-import { blue, magenta } from 'chalk';
-import { networkInterfaces } from 'os';
-// import Cors from 'cors'
+import { networkInterfaces } from 'os'
 
-const App = Express();
-const Network = networkInterfaces();
-const IP = Network.wlp1s0 ? Network.wlp1s0[0].address : Network[Object.keys(Network)[1]][0].address;
-const PORT = process.env.PORT || 3333;
+import { blue, magenta } from 'chalk'
+import express, { json } from 'express'
 
-import lessonsRoute from './app/routes';
+import { connect } from './app/database/connect'
+import { routes } from './app/routes'
+import { logger } from './logger'
 
-/*
-const whitelist = [];
+// eslint-disable-next-line import/newline-after-import, prettier/prettier
+;(async () => {
+  await connect()
 
-const corsOptions = {
-  origin(origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
+  const app = express()
+  const network = networkInterfaces()
 
-App.use(Cors(corsOptions));
-*/
+  const IP = network.wlp1s0
+    ? network.wlp1s0[0].address
+    : network[Object.keys(network)[1]]?.[0]?.address
 
-App
-  .use(Express.json())
-  .use('/api', lessonsRoute)
-  .listen(PORT, () => console.log(
-    blue('App is running:\n'),
-    magenta(`http://localhost:${PORT}/api \n http://${IP}:${PORT}/api`)
-  ))
-;
+  const PORT = process.env.PORT || 3333
+
+  app.use(json())
+
+  app.use('/api', routes)
+
+  app.listen(PORT, () =>
+    logger.info(
+      blue('App is running'),
+      magenta(`http://localhost:${PORT}/api`),
+      magenta(`http://${IP}:${PORT}/api`),
+    ),
+  )
+})()

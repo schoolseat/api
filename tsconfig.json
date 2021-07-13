@@ -1,22 +1,32 @@
 {
+  "include": ["src/**/*"],
+  "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
-    "lib": ["es6"],
+    "baseUrl": "src",
+    "target": "ES2015",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "noEmit": true,
     "allowJs": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
+    "lib": ["ES6", "ES2016", "ES2020"],
+    "typeRoots": ["src/@types", "node_modules/@types"],
     "paths": {
-      "@app/*": ["./src/app/*"],
-      "@database/*": ["./src/database/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@/*": ["*"],
+      "@app/*": ["app/*"]
     }
-  },
-  "include": ["src/**/*"]
+  }
 }
