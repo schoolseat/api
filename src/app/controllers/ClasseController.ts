@@ -11,7 +11,7 @@ export async function getAllClasses(_req: Request,res: Response): Promise<void> 
     })
 }
 
-export async function getClasseById(_req: Request,res: Response): Promise<void> {
+export async function getClasseById(req: Request,res: Response): Promise<void> {
   await Classes.findOne({ _id: req.params.id })
     .then((classe) => res.send(classe))
     .catch((err) => {

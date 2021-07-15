@@ -10,7 +10,7 @@ export async function getAllContent(_req: Request,res: Response): Promise<void> 
       console.log(err)
     })  
 }
-export async function getContentById(_req: Request,res: Response): Promise<void> {
+export async function getContentById(req: Request,res: Response): Promise<void> {
   await Contents.findOne({ _id: req.params.id })
     .then((content) => res.send(content))
     .catch((err) => {
@@ -18,7 +18,7 @@ export async function getContentById(_req: Request,res: Response): Promise<void>
       console.log(err)
     })
 }
-export async function createContent(_req: Request,res: Response): Promise<void> {
+export async function createContent(req: Request,res: Response): Promise<void> {
   await Contents.add(req.body)
     .then((content) => res.status(201).send(content))
     .catch((err) => {
@@ -26,7 +26,7 @@ export async function createContent(_req: Request,res: Response): Promise<void> 
       console.log(err)
     })  
 }
-export async function removeContent(_req: Request,res: Response): Promise<void> {
+export async function removeContent(req: Request,res: Response): Promise<void> {
   await Contents.remove(req.params.id)
     .then((content) => res.send(content))
     .catch((err) => {
