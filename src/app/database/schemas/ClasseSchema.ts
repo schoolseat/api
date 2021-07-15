@@ -1,5 +1,3 @@
-import { Types } from 'mongoose'
-
 import { Schema, Document } from '@/app/database/Schema'
 import type { Classe } from '@/types/models'
 
@@ -15,7 +13,7 @@ export const ClasseSchema = new Schema<Classe & Document>({
   users: {
     type: [
       {
-        type: Types.ObjectId,
+        type: String,
         ref: 'User',
       },
     ],
@@ -24,7 +22,7 @@ export const ClasseSchema = new Schema<Classe & Document>({
   lessons: {
     type: [
       {
-        type: Types.ObjectId,
+        type: String,
         ref: 'Lesson',
       },
     ],
@@ -33,7 +31,7 @@ export const ClasseSchema = new Schema<Classe & Document>({
   contents: {
     type: [
       {
-        type: Types.ObjectId,
+        type: String,
         ref: 'Content',
       },
     ],
