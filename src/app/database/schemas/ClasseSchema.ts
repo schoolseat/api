@@ -4,6 +4,7 @@ import { Schema, Document } from '@/app/database/Schema'
 import type { Classe } from '@/types/models'
 
 export const ClasseSchema = new Schema<Classe & Document>({
+  _id: String,
   icon: String,
   color: String,
   bio: String,
