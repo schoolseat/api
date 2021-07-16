@@ -6,7 +6,7 @@ export const MessageSchema = new Schema<Message & Document>({
   to: { type: String, required: true },
   content: { type: String, required: true },
   author: {
-    type: Object,
+    type: Types.ObjectId,
     ref: 'User',
     required: true,
   },
