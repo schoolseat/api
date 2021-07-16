@@ -1,8 +1,10 @@
+import { Types } from 'mongoose'
+
 import { Schema, Document } from '@/app/database/Schema'
 import type { Classe } from '@/types/models'
 
 export const ClasseSchema = new Schema<Classe & Document>({
-  _id: String,
+  _id: Types.ObjectId,
   icon: String,
   color: String,
   bio: String,
@@ -13,7 +15,7 @@ export const ClasseSchema = new Schema<Classe & Document>({
   users: {
     type: [
       {
-        type: String,
+        type: Types.ObjectId,
         ref: 'User',
       },
     ],
@@ -22,7 +24,7 @@ export const ClasseSchema = new Schema<Classe & Document>({
   lessons: {
     type: [
       {
-        type: String,
+        type: Types.ObjectId,
         ref: 'Lesson',
       },
     ],
@@ -31,7 +33,7 @@ export const ClasseSchema = new Schema<Classe & Document>({
   contents: {
     type: [
       {
-        type: String,
+        type: Types.ObjectId,
         ref: 'Content',
       },
     ],
