@@ -1,7 +1,10 @@
+import { Types } from 'mongoose'
+
 import { Schema, Document } from '@/app/database/Schema'
 import type { User } from '@/types/models'
 
 export const UserSchema = new Schema<User & Document>({
+  _id: Types.ObjectId,
   nickname: String,
   profilePic: String,
   password: { type: String, required: true },

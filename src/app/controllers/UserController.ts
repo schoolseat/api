@@ -2,39 +2,38 @@ import { Request, Response } from 'express'
 
 import { Users } from '@app/database/models'
 
-/**
- * @returns get all users
- */
 export async function getAllUsers(_req: Request, res: Response): Promise<void> {
-  const users = await Users.findAll()
-
-  res.send(users)
+  await Users.findAll()
+    .then((users) => res.status(200).send(users))
+    .catch((err) => {
+      res.sendStatus(500)
+      console.log(err)
+    })
 }
 
-/**
- * @returns Get a user by their id
- */
 export async function getUserById(req: Request, res: Response): Promise<void> {
-  const { id } = req.params
-  const user = await Users.findOne({ _id: id })
-
-  res.send(user)
+  await Users.findOne({ _id: req.params.id })
+    .then((user) => res.status(200).send(user))
+    .catch((err) => {
+      res.sendStatus(500)
+      console.log(err)
+    })
 }
 
-/**
- * @returns Create a user
- */
 export async function createUser(req: Request, res: Response): Promise<void> {
-  const user = await Users.add(req.body)
-
-  res.send(user)
+  await Users.add(req.body)
+    .then((user) => res.status(201).send(user))
+    .catch((err) => {
+      res.sendStatus(500)
+      console.log(err)
+    })
 }
 
-/**
- * @returns Remove a user by their _id
- */
 export async function removeUser(req: Request, res: Response): Promise<void> {
-  const user = await Users.remove(req.params.id)
-
-  res.send(user)
+  await Users.remove(req.params.id)
+    .then((user) => res.send(user))
+    .catch((err) => {
+      res.sendStatus(500)
+      console.log(err)
+    })
 }
