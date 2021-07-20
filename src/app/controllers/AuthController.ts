@@ -16,7 +16,7 @@ export async function loginUser(req: Request, res: Response): Promise<void> {
   if (!(await bcrypt.compare(password, user.password)))
     return res.status(400).json({ error: 'Invalid password' })
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ id: user.id }, process.env.SECRET, {
     expiresIn: 86400,
   })
 
