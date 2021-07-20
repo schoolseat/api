@@ -12,9 +12,9 @@ const UserSchema = new Schema<User & Document>({
   name: { type: String, required: true },
   bornDate: { type: String, required: true },
   bio: { type: String, required: true },
-  stars: { type: String, required: true },
-  level: { type: String, required: true },
-  xp: { type: String, required: true },
+  stars: { type: Number, default: 0 },
+  level: { type: Number, default: 0 },
+  xp: { type: Number, default: 0 },
 })
 
 UserSchema.pre('save', async function (next) {
