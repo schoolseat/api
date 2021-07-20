@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 import bcrypt from 'bcrypt'
 import 'dotenv/config'
-import { Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
+import { Request, Response, NextFunction } from 'express'
+import JWT from 'jsonwebtoken'
 
 import { Users } from '@app/database/models'
 
@@ -16,9 +16,20 @@ export async function loginUser(req: Request, res: Response): Promise<void> {
   if (!(await bcrypt.compare(password, user.password)))
     return res.status(400).json({ error: 'Invalid password' })
 
-  const token = jwt.sign({ id: user.id }, process.env.SECRET, {
-    expiresIn: 86400,
-  })
+  const token = JWT.sign({ id: user.id }, process.env.SECRET, { expiresIn: 86400 })
 
   res.send({ user, token })
+}
+export async function verifyJWT(req: Request, res: Response, next: NextFunction) {
+    console.log('hi', req.headers)
+    const token = req.headers['x-access-token']
+    if (!token) return res.status(401).send({error: 'No token provided'})
+    
+    JWT.verify(token, process.env.SECRET, async (err, decoded) => {
+        if (err) return res.status(500).send({error: 'Failed to authenticate token, please try again'})
+
+        const user = await Users.findOne({_id: decoded.id})
+        req.user = user
+        next()
+    })
 }

@@ -9,6 +9,7 @@ import {
   MessageController,
   UserControler,
   AuthControler,
+  verifyJWT,
 } from './controllers'
 
 export const routes = Router()
@@ -17,7 +18,7 @@ routes
   .get('/', (_req, res) => {
     res.sendFile(path.join(__dirname, '/routes.html'))
   })
-  .get('/users', UserControler.getAllUsers)
+  .get('/users', verifyJWT, UserControler.getAllUsers)
   .get('/users/:id', UserControler.getUserById)
   .delete('/users/:id', UserControler.removeUser)
   .post('/users', UserControler.createUser)
