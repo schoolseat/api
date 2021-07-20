@@ -8,6 +8,7 @@ import {
   LessonController,
   MessageController,
   UserControler,
+  AuthControler,
 } from './controllers'
 
 export const routes = Router()
@@ -40,3 +41,5 @@ routes
   .get('/messages/:id', MessageController.getMessageById)
   .delete('/messages/:id', MessageController.removeMessage)
   .post('/messages', MessageController.createMessage)
+
+  .post('/auth', AuthControler.loginUser)

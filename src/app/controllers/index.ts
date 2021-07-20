@@ -1,3 +1,4 @@
+import * as AuthControler from './AuthController'
 import * as ClasseController from './ClasseController'
 import * as ContentController from './ContentController'
 import * as LessonController from './LessonController'
@@ -10,4 +11,5 @@ export {
   LessonController,
   MessageController,
   UserControler,
+  AuthControler,
 }
