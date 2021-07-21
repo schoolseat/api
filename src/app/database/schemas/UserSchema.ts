@@ -5,7 +5,7 @@ import { Schema, Document } from '@/app/database/Schema'
 import type { User } from '@/types/models'
 
 const UserSchema = new Schema<User & Document>({
-  nickname: String,
+  nickname: { type: String, unique: true },
   profilePic: String,
   password: { type: String, required: true },
   email: { type: String, required: true },
@@ -15,6 +15,7 @@ const UserSchema = new Schema<User & Document>({
   stars: { type: Number, default: 0 },
   level: { type: Number, default: 0 },
   xp: { type: Number, default: 0 },
+  dev: { type: Boolean, default: false }
 })
 
 UserSchema.pre('save', async function (next) {
