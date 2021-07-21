@@ -21,12 +21,11 @@ export async function loginUser(req: Request, res: Response): Promise<void> {
   res.send({ user, token })
 }
 export async function verifyJWT(req: Request, res: Response, next: NextFunction) {
-    console.log('hi', req.headers)
     const token = req.headers['x-access-token']
     if (!token) return res.status(401).send({error: 'No token provided'})
     
     JWT.verify(token, process.env.SECRET, async (err, decoded) => {
-        if (err) return res.status(500).send({error: 'Failed to authenticate token, please try again'})
+        if (err) return res.status(401).send({error: 'Token provided is invalid'})
 
         const user = await Users.findOne({_id: decoded.id})
         req.user = user
