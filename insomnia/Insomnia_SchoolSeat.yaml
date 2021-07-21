@@ -1,11 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2021-07-20T16:05:59.972Z
+__export_date: 2021-07-21T00:02:26.003Z
 __export_source: insomnia.desktop.app:v2021.3.0
 resources:
   - _id: req_90c473db7a6b430eaad71aa0c3b61995
     parentId: fld_d8505280e17147a3bc91db72888386d9
-    modified: 1626797029852
+    modified: 1626823917665
     created: 1626792145552
     url: "{{ _.base_url }}/auth"
     name: Auth
@@ -15,8 +15,8 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"password": "johndoe",
-        	"email": "johndoe@email.com"
+        	"password": "1234",
+        	"email": "m4theusdev@gmail.com"
         }
     parameters: []
     headers:
@@ -53,15 +53,23 @@ resources:
     _type: workspace
   - _id: req_750a30d82b274f12950994daa3f090e5
     parentId: fld_67cfd14ce7cf41fe9ee378cd015917ce
-    modified: 1625849989201
+    modified: 1626824811119
     created: 1625487861657
     url: "{{ _.base_url }}users/"
     name: Users
     description: ""
     method: GET
     body: {}
-    parameters: []
-    headers: []
+    parameters:
+      - name: ""
+        value: ""
+        description: ""
+        id: pair_79d23ec7d5904837b7f7757c86aeff93
+    headers:
+      - name: x-access-token
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjczNDBkMTM0NmU5MDNkN2FmNTBjZiIsImlhdCI6MTYyNjgyMzkzOSwiZXhwIjoxNjI2OTEwMzM5fQ.ak4yqCFdteQImd3QKoF_RnpFJ-AShh_KVoJzauzzJi8
+        description: ""
+        id: pair_a9804b53c1fc48e0a87cb072da47253f
     authentication: {}
     metaSortKey: -1625489669574
     isPrivate: false
@@ -105,7 +113,7 @@ resources:
     _type: request
   - _id: req_b61de789580e40c9a3522af6ec61dfc2
     parentId: fld_67cfd14ce7cf41fe9ee378cd015917ce
-    modified: 1626797034562
+    modified: 1626799913759
     created: 1625488423532
     url: "{{ _.base_url }}/users/"
     name: Users
@@ -115,16 +123,13 @@ resources:
       mimeType: application/json
       text: >-
         {
-        	"password": "johndoe",
-        	"email": "johndoe@email.com",
-        	"name": "john",
-        	"nickname": "doe",
+        	"password": "1234",
+        	"email": "m4theusdev@gmail.com",
+        	"name": "Matheus Vitor",
+        	"nickname": "matheus",
         	"profilePic": "https://dummyimage.com/120x330/ff00ff/ffffff.png&text=bodia",
-        	"bornDate": "01/01/0000",
-        	"bio": "a",
-        	"stars": "5",
-        	"level": "80",
-        	"xp": "42000"
+        	"bornDate": "01/03/2008",
+        	"bio": "Student"
         }
     parameters: []
     headers:
@@ -143,9 +148,9 @@ resources:
     _type: request
   - _id: req_9ebc3ad7766a47e58609b5b6e7e28075
     parentId: fld_67cfd14ce7cf41fe9ee378cd015917ce
-    modified: 1626796933312
+    modified: 1626799944281
     created: 1625489669474
-    url: "{{ _.base_url }}users/"
+    url: "{{ _.base_url }}users/60f6fa21ae465683d89fc1ec"
     name: Users
     description: ""
     method: DELETE
@@ -541,15 +546,23 @@ resources:
     _type: api_spec
   - _id: env_d402f4d0aaf244adbaf91ea0be15ed41
     parentId: env_5dd3d2135cf1edacbf5f75b1fb0fb53a8896fffa
-    modified: 1625934320885
+    modified: 1626825655553
     created: 1625487800073
     name: Localhost
     data:
       base_url: http://localhost:3333/api/
+      token: "{% response 'body', 'req_90c473db7a6b430eaad71aa0c3b61995',
+        'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+      DEFAULT_HEADERS:
+        x-access-token: "{{ _.token }}"
     dataPropertyOrder:
       "&":
         - base_url
-    color: null
+        - token
+        - DEFAULT_HEADERS
+      "&~|DEFAULT_HEADERS":
+        - x-access-token
+    color: "#6b24f0"
     isPrivate: false
     metaSortKey: 1625487800073
     _type: environment
