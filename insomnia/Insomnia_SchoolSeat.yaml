@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2021-07-22T00:42:42.139Z
+__export_date: 2021-07-22T18:10:27.948Z
 __export_source: insomnia.desktop.app:v2021.3.0
 resources:
   - _id: req_90c473db7a6b430eaad71aa0c3b61995
@@ -343,9 +343,9 @@ resources:
     _type: request
   - _id: req_a82312e45c4c47209d3cbc4380774b3d
     parentId: fld_b0fc7f6dc4494abeb955a386bf546099
-    modified: 1625934252876
+    modified: 1626969982484
     created: 1625488387416
-    url: "{{ _.base_url }}/messages/"
+    url: "{{ _.base_url }}/notifications/"
     name: Messages
     description: ""
     method: GET
@@ -374,9 +374,9 @@ resources:
     _type: request_group
   - _id: req_5339fff5b7a74f13aa625b58daf49db2
     parentId: fld_b0fc7f6dc4494abeb955a386bf546099
-    modified: 1626913939058
+    modified: 1626970076672
     created: 1625496261873
-    url: "{{ _.base_url }}/messages/"
+    url: "{{ _.base_url }}/notifications/"
     name: Messages
     description: ""
     method: POST
@@ -384,9 +384,14 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"author": "60f8a7bc93afd1d4333dfb0d",
-        	"to": "drethen",
-        	"content": "quero acasalar com sua irmã"
+        	"to": "60f8a7bc93afd1d4333dfb0d",
+        	"content": "linda",
+        	"data": {
+        		"route": "/",
+        		"props": {
+        			"naosei": "disse que nao sei"
+        		}
+        	}
         }
     parameters: []
     headers:
@@ -405,9 +410,9 @@ resources:
     _type: request
   - _id: req_fe3a82acc0ad4d08860af0b8e653bcfe
     parentId: fld_b0fc7f6dc4494abeb955a386bf546099
-    modified: 1626912847012
+    modified: 1626969994771
     created: 1625496268286
-    url: "{{ _.base_url }}/messages/1"
+    url: "{{ _.base_url }}/notifications/1"
     name: Messages
     description: ""
     method: DELETE
