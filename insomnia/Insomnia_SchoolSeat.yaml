@@ -1,11 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2021-07-21T00:02:26.003Z
+__export_date: 2021-07-22T00:42:42.139Z
 __export_source: insomnia.desktop.app:v2021.3.0
 resources:
   - _id: req_90c473db7a6b430eaad71aa0c3b61995
     parentId: fld_d8505280e17147a3bc91db72888386d9
-    modified: 1626823917665
+    modified: 1626911248601
     created: 1626792145552
     url: "{{ _.base_url }}/auth"
     name: Auth
@@ -16,7 +16,7 @@ resources:
       text: |-
         {
         	"password": "1234",
-        	"email": "m4theusdev@gmail.com"
+        	"email": "matheus@gmail.com"
         }
     parameters: []
     headers:
@@ -254,7 +254,7 @@ resources:
     _type: request
   - _id: req_ef41a009585047cdaee71552931f6ffa
     parentId: fld_888bf3055e0d496c9ea118c1167c14f4
-    modified: 1625850217629
+    modified: 1626911664940
     created: 1625488366972
     url: "{{ _.base_url }}/content"
     name: Content
@@ -262,7 +262,12 @@ resources:
     method: GET
     body: {}
     parameters: []
-    headers: []
+    headers:
+      - name: x-access-token
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_2e4a097555bd48d4942ee67036938c14
+        disabled: false
     authentication: {}
     metaSortKey: -1625487861557
     isPrivate: false
@@ -285,7 +290,7 @@ resources:
     _type: request_group
   - _id: req_973868aebf9040f2917e959f9f9e624a
     parentId: fld_888bf3055e0d496c9ea118c1167c14f4
-    modified: 1626797041550
+    modified: 1626913392242
     created: 1625496251222
     url: "{{ _.base_url }}/content"
     name: Content
@@ -295,9 +300,9 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"title": "bbbbbbb",
-        	"content": "bbbbb",
-        	"text": "ccccccc",
+        	"title": "Dev",
+        	"content": "Testando aqui né",
+        	"text": "undefined",
         	"classe": "12"
         }
     parameters: []
@@ -317,9 +322,9 @@ resources:
     _type: request
   - _id: req_fc239a9c32554ccb8ac196211b1e2634
     parentId: fld_888bf3055e0d496c9ea118c1167c14f4
-    modified: 1625850222825
+    modified: 1626912818070
     created: 1625496256207
-    url: "{{ _.base_url }}/content"
+    url: "{{ _.base_url }}/content/1"
     name: Content
     description: ""
     method: DELETE
@@ -369,7 +374,7 @@ resources:
     _type: request_group
   - _id: req_5339fff5b7a74f13aa625b58daf49db2
     parentId: fld_b0fc7f6dc4494abeb955a386bf546099
-    modified: 1626797044950
+    modified: 1626913939058
     created: 1625496261873
     url: "{{ _.base_url }}/messages/"
     name: Messages
@@ -379,9 +384,9 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"author": "dreto",
-        	"to": "teteu",
-        	"content": "aaaaaaaa"
+        	"author": "60f8a7bc93afd1d4333dfb0d",
+        	"to": "drethen",
+        	"content": "quero acasalar com sua irmã"
         }
     parameters: []
     headers:
@@ -400,9 +405,9 @@ resources:
     _type: request
   - _id: req_fe3a82acc0ad4d08860af0b8e653bcfe
     parentId: fld_b0fc7f6dc4494abeb955a386bf546099
-    modified: 1625934262012
+    modified: 1626912847012
     created: 1625496268286
-    url: "{{ _.base_url }}/messages/"
+    url: "{{ _.base_url }}/messages/1"
     name: Messages
     description: ""
     method: DELETE
@@ -452,7 +457,7 @@ resources:
     _type: request_group
   - _id: req_eb7294fe742e41c0b458f9e790b31e16
     parentId: fld_574df14001c546a9b4276795e088ec62
-    modified: 1626797048038
+    modified: 1626913519627
     created: 1625496287947
     url: "{{ _.base_url }}/classes/"
     name: Classes
@@ -464,22 +469,19 @@ resources:
         {
         	"class": "12",
         	"discipline": "math",
-        	"icon": "icone",
+        	"icon": "rocket",
         	"color": "blue",
         	"bio": "dako é bom",
         	"teacher": "kiko lindo",
         	"school": "centro de ensino",
         	"lessons": [
-        		"0",
-        		"1"
+        		"60f8b96e1eafb44336e4f792"
         	],
         	"users": [
-        		"0",
-        		"1"
+        		"60f8a7bc93afd1d4333dfb0d"
         	],
-        	"content": [
-        		"0",
-        		"1"
+        	"contents": [
+        		"60f8ba731eafb44336e4f79e"
         	]
         }
     parameters: []
@@ -499,9 +501,9 @@ resources:
     _type: request
   - _id: req_03418ded87e44c7a90f9a16bcd57979a
     parentId: fld_574df14001c546a9b4276795e088ec62
-    modified: 1625934302248
+    modified: 1626913528225
     created: 1625496278365
-    url: "{{ _.base_url }}/classes/"
+    url: "{{ _.base_url }}/classes/60f8ba851eafb44336e4f7a3"
     name: Classes
     description: ""
     method: DELETE
@@ -546,7 +548,7 @@ resources:
     _type: api_spec
   - _id: env_d402f4d0aaf244adbaf91ea0be15ed41
     parentId: env_5dd3d2135cf1edacbf5f75b1fb0fb53a8896fffa
-    modified: 1626825655553
+    modified: 1626911623662
     created: 1625487800073
     name: Localhost
     data:
