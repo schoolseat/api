@@ -43,8 +43,11 @@ export interface Classe extends BaseSchema {
   contents: string[]
 }
 
-export interface Message extends BaseSchema {
-  to: string
-  author: User
+export interface Notification extends BaseSchema {
+  to: User
   content: string
+  data: {
+    route: string
+    props: object
+  }
 }

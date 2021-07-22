@@ -6,7 +6,7 @@ import {
   ClasseController,
   ContentController,
   LessonController,
-  MessageController,
+  NotificationController,
   UserControler,
   AuthControler,
   verifyJWT,
@@ -38,9 +38,9 @@ routes
   .delete('/lessons/:id', verifyJWT, LessonController.removeLesson)
   .post('/lessons', verifyJWT, LessonController.createLesson)
 
-  .get('/messages', MessageController.getAllMessages)
-  .get('/messages/:id', MessageController.getMessageById)
-  .delete('/messages/:id', MessageController.removeMessage)
-  .post('/messages', MessageController.createMessage)
+  .get('/notifications', verifyJWT, NotificationController.getAllNotifications)
+  .get('/notifications/:id', verifyJWT, NotificationController.getNotificationById)
+  .delete('/notifications/:id', verifyJWT, NotificationController.removeNotification)
+  .post('/notifications', verifyJWT, NotificationController.createNotification)
 
   .post('/auth', AuthControler.loginUser)
