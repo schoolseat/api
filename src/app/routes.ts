@@ -23,23 +23,23 @@ routes
   .delete('/users/:id', verifyJWT, UserControler.removeUser)
   .post('/users', UserControler.createUser)
 
-  .get('/classes', verifyJWT, ClasseController.getAllClasses)
-  .get('/classes/:id', verifyJWT, ClasseController.getClasseById)
+  .get('/classes', ClasseController.getAllClasses)
+  .get('/classes/:id', ClasseController.getClasseById)
   .delete('/classes/:id', verifyJWT, ClasseController.removeClasse)
   .post('/classes', verifyJWT, ClasseController.createClasse)
 
-  .get('/content', verifyJWT, ContentController.getAllContent)
-  .get('/content/:id', verifyJWT, ContentController.getContentById)
+  .get('/content', ContentController.getAllContent)
+  .get('/content/:id', ContentController.getContentById)
   .delete('/content/:id', verifyJWT, ContentController.removeContent)
   .post('/content', verifyJWT, ContentController.createContent)
 
-  .get('/lessons', verifyJWT, LessonController.getAllLessons)
-  .get('/lessons/:id', verifyJWT, LessonController.getLessonById)
+  .get('/lessons', LessonController.getAllLessons)
+  .get('/lessons/:id', LessonController.getLessonById)
   .delete('/lessons/:id', verifyJWT, LessonController.removeLesson)
   .post('/lessons', verifyJWT, LessonController.createLesson)
 
-  .get('/notifications', verifyJWT, NotificationController.getAllNotifications)
-  .get('/notifications/:id', verifyJWT, NotificationController.getNotificationById)
+  .get('/notifications', NotificationController.getAllNotifications)
+  .get('/notifications/:id', NotificationController.getNotificationById)
   .delete('/notifications/:id', verifyJWT, NotificationController.removeNotification)
   .post('/notifications', verifyJWT, NotificationController.createNotification)
 
