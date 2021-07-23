@@ -7,7 +7,11 @@ export const ClasseSchema = new Schema<Classe & Document>({
   bio: String,
   school: String,
   number: Number,
-  teacher: { type: String, required: true },
+  teacher: {
+    type: String,
+    ref: 'User',
+    required: true,
+  },
   discipline: { type: String, required: true },
   users: {
     type: Array,
