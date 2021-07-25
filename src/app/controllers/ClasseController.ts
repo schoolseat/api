@@ -2,19 +2,13 @@ import { Request, Response } from 'express'
 
 import { Classes } from '@app/database/models'
 
-export async function getAllClasses(
-  _req: Request,
-  res: Response,
-): Promise<void> {
+export async function getAllClasses(_req: Request, res: Response): Promise<void> {
   await Classes.findAll()
     .then(classes => res.send(classes))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export async function getClasseById(
-  req: Request,
-  res: Response,
-): Promise<void> {
+export async function getClasseById(req: Request, res: Response): Promise<void> {
   await Classes.findOne({ _id: req.params.id })
     .then(classe => res.send(classe))
     .catch(err => res.status(400).json({ error: err.message }))
