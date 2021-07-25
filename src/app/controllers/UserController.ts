@@ -27,6 +27,7 @@ export async function createUser(req: Request, res: Response): Promise<void> {
 }
 
 export async function removeUser(req: Request, res: Response): Promise<void> {
+  if(req.user._id != req.params.id && !req.user.dev) return res.status(403).json({error: 'Permissioan denied'})
   await Users.remove(req.params.id)
     .then(user => res.send(user))
     .catch(err => res.status(400).json({ error: err.message }))
