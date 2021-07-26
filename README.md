@@ -20,13 +20,14 @@
 
 ## 💻 Docs | 🚧 Under construction
 
-- [Project structure](#)
+- [Project structure](https://github.com/schoolseat/api/blob/main/docs/structure.md)
 - [Routes](#)
 
 ## 📝 TODO
 
-- [x] ???
-- [ ] ???
+- [ ] Check permissions in controllers.
+- [ ] Location-based login verification.
+- [ ] Login with Google.
 
 ## 📄 License
 
