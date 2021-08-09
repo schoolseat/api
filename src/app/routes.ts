@@ -25,6 +25,7 @@ routes
 
   .get('/classes', ClasseController.getAllClasses)
   .get('/classes/:id', ClasseController.getClasseById)
+  .get('/teacher/:id', ClasseController.findTeacher)
   .delete('/classes/:id', verifyJWT, ClasseController.removeClasse)
   .post('/classes', verifyJWT, ClasseController.createClasse)
 
