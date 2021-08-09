@@ -25,3 +25,12 @@ export async function removeClasse(req: Request, res: Response): Promise<void> {
     .then(classe => res.send(classe))
     .catch(err => res.status(400).json({ error: err.message }))
 }
+
+export async function findTeacher(req: Request, res: Response): Promise<void> {
+  await Classes.findOne({ _id: req.params.id })
+    .then(classe => {
+      Users.findOne({ _id: classe.teacher })
+        .then(user => res.status(200).send(user))
+    })
+    .catch(err => res.status(400).json({ error: err.message }))
+}
