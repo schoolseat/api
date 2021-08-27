@@ -4,6 +4,7 @@ import { networkInterfaces } from 'os'
 
 import { blue, magenta } from 'chalk'
 import express, { json } from 'express'
+import cors from 'cors'
 
 import { connect } from './app/database/connect'
 import { routes } from './app/routes'
@@ -23,6 +24,7 @@ import { logger } from './logger'
   const PORT = process.env.PORT || 3333
 
   app.use(json())
+  app.use(cors())
 
   app.use('/api', routes)
 
