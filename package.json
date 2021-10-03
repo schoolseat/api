@@ -4,8 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "node build/index.js",
-    "dev": "tsnd --respawn --no-notify --transpile-only -r tsconfig-paths/register src/index.ts",
+    "start": "node -r dotenv/config build/index.js",
+    "dev": "tsnd --respawn --no-notify --transpile-only -r tsconfig-paths/register -r dotenv/config src/index.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir build --copy-files --no-copy-ignored",
     "lint": "eslint ./ --ext js,ts",
     "lint:fix": "eslint ./ --ext js,ts --fix"

@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 import bcrypt from 'bcrypt'
-import 'dotenv/config'
 import { Request, Response, NextFunction } from 'express'
 import JWT from 'jsonwebtoken'
 

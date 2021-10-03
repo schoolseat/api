@@ -1,5 +1,3 @@
-import 'dotenv/config'
-
 import { networkInterfaces } from 'os'
 
 import { blue, magenta } from 'chalk'
