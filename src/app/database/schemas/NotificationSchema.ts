@@ -10,6 +10,6 @@ export const NotificationSchema = new Schema<Notification & Document>({
   content: String,
   data: {
     route: String,
-    props: Object
+    props: Object,
   },
 })

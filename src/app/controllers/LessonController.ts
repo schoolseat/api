@@ -2,13 +2,19 @@ import { Request, Response } from 'express'
 
 import { Lessons } from '@app/database/models'
 
-export async function getAllLessons(_req: Request, res: Response): Promise<void> {
+export async function getAllLessons(
+  _req: Request,
+  res: Response,
+): Promise<void> {
   await Lessons.findAll()
     .then(lessons => res.send(lessons))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export async function getLessonById(req: Request, res: Response): Promise<void> {
+export async function getLessonById(
+  req: Request,
+  res: Response,
+): Promise<void> {
   await Lessons.findOne({ _id: req.params.id })
     .then(lesson => res.send(lesson))
     .catch(err => res.status(400).json({ error: err.message }))

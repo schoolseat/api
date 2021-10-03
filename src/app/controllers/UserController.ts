@@ -16,10 +16,11 @@ export async function getUserById(req: Request, res: Response): Promise<void> {
 }
 
 export async function createUser(req: Request, res: Response): Promise<void> {
-  if (req.body.password.length < 6) return res.status(400).json({error: 'Password is less than 6 digits'}) 
+  if (req.body.password.length < 6)
+    return res.status(400).json({ error: 'Password is less than 6 digits' })
   if (await Users.findOne({ email: req.body.email })) {
-    return res.status(400).json({ message: 'email already exists' })
-}
+    return res.status(400).json({ message: 'Email already exists' })
+  }
 
   await Users.add(req.body)
     .then(user => res.status(201).send(user))
@@ -27,7 +28,8 @@ export async function createUser(req: Request, res: Response): Promise<void> {
 }
 
 export async function removeUser(req: Request, res: Response): Promise<void> {
-  if(req.user._id != req.params.id && !req.user.dev) return res.status(403).json({error: 'Permissioan denied'})
+  if (req.user._id !== req.params.id && !req.user.dev)
+    return res.status(403).json({ error: 'Permission denied' })
   await Users.remove(req.params.id)
     .then(user => res.send(user))
     .catch(err => res.status(400).json({ error: err.message }))

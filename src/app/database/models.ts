@@ -11,6 +11,9 @@ export const Classes = createModelFactory('Classes', ClasseSchema)
 
 export const Contents = createModelFactory('Contents', ContentSchema)
 
-export const Notifications = createModelFactory('Notifications', NotificationSchema)
+export const Notifications = createModelFactory(
+  'Notifications',
+  NotificationSchema,
+)
 
 export const Lessons = createModelFactory('Lessons', LessonSchema)

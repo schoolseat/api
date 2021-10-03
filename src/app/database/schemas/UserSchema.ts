@@ -15,7 +15,7 @@ const UserSchema = new Schema<User & Document>({
   stars: { type: Number, default: 0 },
   level: { type: Number, default: 0 },
   xp: { type: Number, default: 0 },
-  dev: { type: Boolean, default: false }
+  dev: { type: Boolean, default: false },
 })
 
 UserSchema.pre('save', async function (next) {

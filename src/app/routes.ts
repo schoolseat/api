@@ -41,7 +41,11 @@ routes
 
   .get('/notifications', NotificationController.getAllNotifications)
   .get('/notifications/:id', NotificationController.getNotificationById)
-  .delete('/notifications/:id', verifyJWT, NotificationController.removeNotification)
+  .delete(
+    '/notifications/:id',
+    verifyJWT,
+    NotificationController.removeNotification,
+  )
   .post('/notifications', verifyJWT, NotificationController.createNotification)
 
   .post('/auth', AuthControler.loginUser)
