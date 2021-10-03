@@ -18,16 +18,12 @@
 - Run code syntax and format checking using `yarn lint` or `npm run lint` which runs eslint.
 - Automatically fix lint errors with `yarn lint:fix` or `npm run lint:fix`.
 
-## 💻 Docs | 🚧 Under construction
-
-- [Project structure](https://github.com/schoolseat/api/blob/main/docs/structure.md)
-- [Routes](#)
-
 ## 📝 TODO
 
-- [ ] Check permissions in controllers.
+- [x] Check permissions in controllers.
 - [ ] Location-based login verification.
 - [ ] Login with Google.
+- [ ] Email...
 
 ## 📄 License
 
