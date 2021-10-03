@@ -3,14 +3,15 @@ import 'dotenv/config'
 import { networkInterfaces } from 'os'
 
 import { blue, magenta } from 'chalk'
-import express, { json } from 'express'
 import cors from 'cors'
+import express, { json } from 'express'
+import helmet from 'helmet'
 
 import { connect } from './app/database/connect'
 import { routes } from './app/routes'
 import { logger } from './logger'
 
-// eslint-disable-next-line import/newline-after-import, prettier/prettier
+// eslint-disable-next-line import/newline-after-import
 ;(async () => {
   await connect()
 
@@ -25,6 +26,7 @@ import { logger } from './logger'
 
   app.use(json())
   app.use(cors())
+  app.use(helmet())
 
   app.use('/api', routes)
 
