@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import { Request, Response } from 'express'
+import isEmail from 'validator/lib/isEmail'
 
 import { Users } from '@app/database/models'
 
@@ -19,8 +20,16 @@ export async function createUser(req: Request, res: Response): Promise<void> {
   if (req.body.password.length < 6)
     return res.status(400).json({ error: 'Password is less than 6 digits' })
 
+  if (!isEmail(req.body.email)) {
+    return res.status(400).json({ message: 'Email is not valid' })
+  }
+
   if (await Users.findOne({ email: req.body.email })) {
     return res.status(400).json({ message: 'Email already exists' })
+  }
+
+  if (await Users.findOne({ nickname: req.body.nickname })) {
+    return res.status(400).json({ message: 'Nickname already used' })
   }
 
   Users.add(req.body)
