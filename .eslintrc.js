@@ -137,12 +137,7 @@ module.exports = {
             allowSingleExtends: true,
           },
         ],
-        '@typescript-eslint/explicit-function-return-type': [
-          'error',
-          {
-            allowExpressions: true,
-          },
-        ],
+        '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-unused-vars': [
           'error',
           {
@@ -158,6 +153,7 @@ module.exports = {
             ignoreTypeReferences: true,
           },
         ],
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
       },
     },
   ],

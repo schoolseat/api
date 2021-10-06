@@ -1,32 +1,32 @@
-import { Request, Response } from 'express'
+import type { Request, Response } from 'express'
 
-import { Classes } from '@app/database/models'
+import { Classes, Users } from '@app/database/models'
 
-export function getAllClasses(_req: Request, res: Response): Promise<void> {
+export function getAllClasses(_req: Request, res: Response) {
   Classes.findAll()
     .then(classes => res.send(classes))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export function getClasseById(req: Request, res: Response): Promise<void> {
+export function getClasseById(req: Request, res: Response) {
   Classes.findOne({ _id: req.params.id })
     .then(classe => res.send(classe))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export async function createClasse(req: Request, res: Response): Promise<void> {
+export async function createClasse(req: Request, res: Response) {
   Classes.add(req.body)
     .then(classe => res.status(201).send(classe))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export function removeClasse(req: Request, res: Response): Promise<void> {
+export function removeClasse(req: Request, res: Response) {
   Classes.remove(req.params.id)
     .then(classe => res.send(classe))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export function findTeacher(req: Request, res: Response): Promise<void> {
+export function findTeacher(req: Request, res: Response) {
   Classes.findOne({ _id: req.params.id })
     .then(classe => {
       Users.findOne({ _id: classe.teacher }).then(user =>

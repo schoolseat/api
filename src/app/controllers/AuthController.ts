@@ -1,11 +1,11 @@
 /* eslint-disable consistent-return */
 import bcrypt from 'bcrypt'
-import { Request, Response, NextFunction } from 'express'
+import type { Request, Response, NextFunction } from 'express'
 import JWT from 'jsonwebtoken'
 
 import { Users } from '@app/database/models'
 
-export async function loginUser(req: Request, res: Response): Promise<void> {
+export async function loginUser(req: Request, res: Response) {
   const { email, password } = req.body
 
   const user = await Users.findOne({ email }, 'password')

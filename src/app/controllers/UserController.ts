@@ -1,24 +1,24 @@
 /* eslint-disable consistent-return */
 
-import { Request, Response } from 'express'
+import type { Request, Response } from 'express'
 import isEmail from 'validator/lib/isEmail'
 
 import { Users } from '@app/database/models'
 import Mailer from '@app/services/mail'
 
-export function getAllUsers(_req: Request, res: Response): Promise<void> {
+export function getAllUsers(_req: Request, res: Response) {
   Users.findAll()
     .then(users => res.status(200).send(users))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export function getUserById(req: Request, res: Response): Promise<void> {
+export function getUserById(req: Request, res: Response) {
   Users.findOne({ _id: req.params.id })
     .then(user => res.status(200).send(user))
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export async function createUser(req: Request, res: Response): Promise<void> {
+export async function createUser(req: Request, res: Response) {
   if (req.body.password.length < 6)
     return res.status(400).json({ error: 'Password is less than 6 digits' })
 
@@ -48,7 +48,7 @@ export async function createUser(req: Request, res: Response): Promise<void> {
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
-export function removeUser(req: Request, res: Response): Promise<void> {
+export function removeUser(req: Request, res: Response) {
   if (req.user._id !== req.params.id && !req.user.dev)
     return res.status(403).json({ error: 'Permission denied' })
 

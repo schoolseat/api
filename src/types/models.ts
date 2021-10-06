@@ -41,6 +41,7 @@ export interface Classe extends BaseSchema {
   users: string[]
   lessons: string[]
   contents: string[]
+  teacher: string
 }
 
 export interface Notification extends BaseSchema {
