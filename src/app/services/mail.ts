@@ -1,4 +1,15 @@
+import { resolve } from 'path'
+
+import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access'
+import Handlebars from 'handlebars'
 import nodemailer, { Transporter, SendMailOptions } from 'nodemailer'
+import hbs from 'nodemailer-express-handlebars'
+
+interface IMailOptions extends SendMailOptions {
+  to: string | string[]
+  template?: string
+  context?: object
+}
 
 class Mailer {
   transporter: Transporter
@@ -11,11 +22,24 @@ class Mailer {
         pass: process.env.GMAIL_PASS,
       },
     })
+
+    this.transporter.use(
+      'compile',
+      hbs({
+        viewEngine: {
+          extname: '.hbs',
+          defaultLayout: undefined,
+          handlebars: allowInsecurePrototypeAccess(Handlebars),
+        },
+        viewPath: resolve(__dirname, '..', 'views'),
+        extName: '.hbs',
+      }),
+    )
   }
 
-  sendMail(options: SendMailOptions): any {
+  sendMail(options: IMailOptions): any {
     return this.transporter.sendMail({
-      from: 'Support SchoolSeat <schoolseat@gmail.com>',
+      from: 'SchoolSeat <schoolseat@gmail.com>',
       ...options,
     })
   }

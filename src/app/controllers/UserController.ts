@@ -1,8 +1,10 @@
 /* eslint-disable consistent-return */
+
 import { Request, Response } from 'express'
 import isEmail from 'validator/lib/isEmail'
 
 import { Users } from '@app/database/models'
+import Mailer from '@app/services/mail'
 
 export function getAllUsers(_req: Request, res: Response): Promise<void> {
   Users.findAll()
@@ -33,7 +35,16 @@ export async function createUser(req: Request, res: Response): Promise<void> {
   }
 
   Users.add(req.body)
-    .then(user => res.status(201).send(user))
+    .then(user => {
+      Mailer.sendMail({
+        to: user.email,
+        subject: 'Welcome to SchoolSeat',
+        template: 'account_created',
+        context: { user },
+      })
+
+      return res.status(201).send(user)
+    })
     .catch(err => res.status(400).json({ error: err.message }))
 }
 
