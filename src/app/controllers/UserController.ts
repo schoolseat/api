@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-
 import type { Request, Response } from 'express'
 import isEmail from 'validator/lib/isEmail'
 
@@ -34,7 +32,7 @@ export async function createUser(req: Request, res: Response) {
     return res.status(400).json({ message: 'Nickname already used' })
   }
 
-  Users.add(req.body)
+  return Users.add(req.body)
     .then(user => {
       Mailer.sendMail({
         to: user.email,
@@ -52,7 +50,7 @@ export function removeUser(req: Request, res: Response) {
   if (req.user._id !== req.params.id && !req.user.dev)
     return res.status(403).json({ error: 'Permission denied' })
 
-  Users.remove(req.params.id)
+  return Users.remove(req.params.id)
     .then(user => res.send(user))
     .catch(err => res.status(400).json({ error: err.message }))
 }
