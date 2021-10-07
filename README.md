@@ -23,7 +23,7 @@
 - [x] Check permissions in controllers.
 - [ ] Location-based login verification.
 - [ ] Login with Google.
-- [ ] Email...
+- [X] Email...
 
 ## 📄 License
 
