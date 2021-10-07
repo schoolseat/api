@@ -49,3 +49,4 @@ routes
   .post('/notifications', verifyJWT, NotificationController.createNotification)
 
   .post('/auth', AuthControler.loginUser)
+  .get('/verify', AuthControler.verifyEmail)

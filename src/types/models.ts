@@ -15,6 +15,8 @@ export interface User extends BaseSchema {
   stars: string
   level: string
   xp: string
+  dev: boolean
+  verified: boolean
 }
 
 export interface Lesson extends BaseSchema {

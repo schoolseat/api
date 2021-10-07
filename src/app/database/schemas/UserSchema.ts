@@ -19,6 +19,7 @@ const UserSchema = new Schema<User & Document>({
   level: { type: Number, default: 0 },
   xp: { type: Number, default: 0 },
   dev: { type: Boolean, default: false },
+  verified: { type: Boolean, default: false },
 })
 
 UserSchema.pre('save', async function (next) {

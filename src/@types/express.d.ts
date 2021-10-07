@@ -12,6 +12,8 @@ declare namespace Express {
       stars: string
       level: string
       xp: string
+      dev: boolean
+      verified: boolean
     }
   }
 }

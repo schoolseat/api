@@ -1,9 +1,12 @@
+/* eslint-disable consistent-return */
 import { resolve } from 'path'
 
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access'
 import Handlebars from 'handlebars'
 import nodemailer, { Transporter, SendMailOptions } from 'nodemailer'
 import hbs from 'nodemailer-express-handlebars'
+
+import { logger } from '@/logger'
 
 interface IMailOptions extends SendMailOptions {
   to: string | string[]
@@ -38,10 +41,15 @@ class Mailer {
   }
 
   sendMail(options: IMailOptions): any {
-    return this.transporter.sendMail({
-      from: 'SchoolSeat <schoolseat@gmail.com>',
-      ...options,
-    })
+    return this.transporter.sendMail(
+      {
+        from: 'SchoolSeat <schoolseat@gmail.com>',
+        ...options,
+      },
+      err => {
+        if (err) return logger.info(err.message)
+      },
+    )
   }
 }
 

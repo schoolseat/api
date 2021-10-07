@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express'
+import { sign } from 'jsonwebtoken'
 import isEmail from 'validator/lib/isEmail'
 
 import { Users } from '@app/database/models'
@@ -34,11 +35,13 @@ export async function createUser(req: Request, res: Response) {
 
   return Users.add(req.body)
     .then(user => {
+      const confirmToken = sign(user.email, process.env.SECRET)
+
       Mailer.sendMail({
         to: user.email,
         subject: 'Welcome to SchoolSeat',
-        template: 'account_created',
-        context: { user },
+        template: 'account_confirm',
+        context: { user, confirmToken },
       })
 
       return res.status(201).send(user)
