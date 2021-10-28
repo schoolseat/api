@@ -1,9 +1,26 @@
-<div>
-  <h2>Hello {{user.name}}</h2>
-  Confirm your account
-  <a
-    href='http://localhost:3333/api/verify?token={{confirmToken}}'
-    target='_blank'
-  >here</a>
-
+<div
+  style='font-family: sans-serif; display: block; margin: auto; max-width:
+  600px; text-decoration: none; text-align: center;'
+>
+  <h2>
+    Hello
+    <span style='text-transform: capitalize;'> {{user.name}}</span><br />
+    <span>
+      Confirm your account!
+    </span>
+  </h2>
+  <h3>
+    Your SchoolSeat account has been created and to access the platform you need
+    to confirm your account.
+  </h3>
+  <br />
+  <button
+    type='button'
+    style='height:
+  40px; border: none; border-radius: 2px; font-size: 1rem;'
+  ><a
+      href='http://localhost:3333/api/verify?token={{confirmToken}}'
+      target='_blank'
+    >Click here to confirm</a>
+  </button>
 </div>
